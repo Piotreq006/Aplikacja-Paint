@@ -7,12 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid x:Name="MyGrid" AutomationProperties.Name="">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="___Brak_nazwy_" Width="155*"/>
-            <ColumnDefinition Width="78*"/>
-            <ColumnDefinition Width="104*"/>
-            <ColumnDefinition Width="463*"/>
-        </Grid.ColumnDefinitions>
 
         <InkCanvas x:Name="MyCanvas" Grid.ColumnSpan="4">
 

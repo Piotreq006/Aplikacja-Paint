@@ -27,21 +27,24 @@ namespace PaintApp
     {
         Button btnPen = new Button();
         Button btnEraser = new Button();
+        Button clearAll = new Button();
         Button btnRed = new Button();
         Button btnGreen = new Button();
         Button btnBlue = new Button();
         Button btnSave = new Button();
         Button btnLoad = new Button();
+        RadioButton big = new RadioButton();
+        RadioButton medium = new RadioButton();
+        RadioButton small = new RadioButton();
+
         public MainWindow()
         {
             InitializeComponent();
             this.Title = "Paint After 1 year in Russia";
             this.WindowState = System.Windows.WindowState.Maximized;
-            SolidColorBrush brsh = new SolidColorBrush(Colors.Gray);
+            SolidColorBrush brsh = new SolidColorBrush(Colors.LightGray);
             MyGrid.Background = (Brush)brsh;
-            MyCanvas.DefaultDrawingAttributes.Color = Colors.Red;
-            MyCanvas.DefaultDrawingAttributes.Width = 50;
-            MyCanvas.DefaultDrawingAttributes.Height = 50;
+
 
             MyCanvas.Height = System.Windows.SystemParameters.WorkArea.Height - 150;
             MyCanvas.Width = System.Windows.SystemParameters.WorkArea.Width;
@@ -51,6 +54,10 @@ namespace PaintApp
 
             MyCanvas.UseCustomCursor = true;
             AddButtonOnGreed();
+
+            MyCanvas.DefaultDrawingAttributes.Color = Colors.Red;
+            MyCanvas.DefaultDrawingAttributes.Width = 10;
+            MyCanvas.DefaultDrawingAttributes.Height = 10;
         }
 
         public void AddButtonOnGreed()
@@ -59,9 +66,13 @@ namespace PaintApp
             btnPen.Name = "btnPen";
             btnPen.HorizontalAlignment = HorizontalAlignment.Left;
             btnPen.VerticalAlignment = VerticalAlignment.Top;
-            btnPen.Width = 80;
+            btnPen.Width = 100;
             btnPen.Height = 50;
-            btnPen.Margin = new Thickness(80, 40, 0, 0);
+            btnPen.Foreground = new SolidColorBrush(Colors.White);
+            btnPen.Background = new SolidColorBrush(Colors.DarkGray);
+            btnPen.FontWeight = FontWeights.Bold;
+            btnPen.FontSize = 14;
+            btnPen.Margin = new Thickness(90, 40, 0, 0);
             btnPen.Click += new RoutedEventHandler(btnClick);
             MyGrid.Children.Add(btnPen);
 
@@ -69,11 +80,29 @@ namespace PaintApp
             btnEraser.Name = "btnEraser";
             btnEraser.HorizontalAlignment = HorizontalAlignment.Left;
             btnEraser.VerticalAlignment = VerticalAlignment.Top;
-            btnEraser.Width = 80;
+            btnEraser.Width = 100;
             btnEraser.Height = 50;
-            btnEraser.Margin = new Thickness(150, 40, 0, 0);
-            btnEraser.Click += new RoutedEventHandler(btnClick); 
+            btnEraser.Foreground = new SolidColorBrush(Colors.White);
+            btnEraser.Background = new SolidColorBrush(Colors.DarkGray);
+            btnEraser.FontWeight = FontWeights.Bold;
+            btnEraser.FontSize = 14;
+            btnEraser.Margin = new Thickness(200, 40, 0, 0);
+            btnEraser.Click += new RoutedEventHandler(btnClick);
             MyGrid.Children.Add(btnEraser);
+
+            clearAll.Content = "Clear All";
+            clearAll.Name = "clearAll";
+            clearAll.HorizontalAlignment = HorizontalAlignment.Left;
+            clearAll.VerticalAlignment = VerticalAlignment.Top;
+            clearAll.Width = 100;
+            clearAll.Height = 50;
+            clearAll.Foreground = new SolidColorBrush(Colors.White);
+            clearAll.Background = new SolidColorBrush(Colors.DarkGray);
+            clearAll.FontWeight = FontWeights.Bold;
+            clearAll.FontSize = 14;
+            clearAll.Margin = new Thickness(310, 40, 0, 0);
+            clearAll.Click += new RoutedEventHandler(btnClick);
+            MyGrid.Children.Add(clearAll);
 
             btnRed.Background = new SolidColorBrush(Colors.Red);
             btnRed.Name = "btnRed";
@@ -81,7 +110,7 @@ namespace PaintApp
             btnRed.VerticalAlignment = VerticalAlignment.Top;
             btnRed.Width = 20;
             btnRed.Height = 20;
-            btnRed.Margin = new Thickness(90, 100, 0, 0);
+            btnRed.Margin = new Thickness(100, 100, 0, 0);
             btnRed.Click += new RoutedEventHandler(btnClick);
             MyGrid.Children.Add(btnRed);
 
@@ -91,7 +120,7 @@ namespace PaintApp
             btnGreen.VerticalAlignment = VerticalAlignment.Top;
             btnGreen.Width = 20;
             btnGreen.Height = 20;
-            btnGreen.Margin = new Thickness(120, 100, 0, 0);
+            btnGreen.Margin = new Thickness(130, 100, 0, 0);
             btnGreen.Click += new RoutedEventHandler(btnClick);
             MyGrid.Children.Add(btnGreen);
 
@@ -101,17 +130,49 @@ namespace PaintApp
             btnBlue.VerticalAlignment = VerticalAlignment.Top;
             btnBlue.Width = 20;
             btnBlue.Height = 20;
-            btnBlue.Margin = new Thickness(150, 100, 0, 0);
+            btnBlue.Margin = new Thickness(160, 100, 0, 0);
             btnBlue.Click += new RoutedEventHandler(btnClick);
             MyGrid.Children.Add(btnBlue);
+
+            big.Content = "Big";
+            big.Name = "big";
+            big.FontWeight = FontWeights.Bold;
+            big.HorizontalAlignment = HorizontalAlignment.Left;
+            big.VerticalAlignment = VerticalAlignment.Top;
+            big.Margin = new Thickness(10, 40, 0, 0);
+            big.Click += new RoutedEventHandler(radioBtnClick);
+            MyGrid.Children.Add(big);
+
+            medium.Content = "Medium";
+            medium.Name = "medium";
+            medium.FontWeight = FontWeights.Bold;
+            medium.HorizontalAlignment = HorizontalAlignment.Left;
+            medium.VerticalAlignment = VerticalAlignment.Top;
+            medium.Margin = new Thickness(10, 60, 0, 0);
+            medium.Click += new RoutedEventHandler(radioBtnClick);
+            MyGrid.Children.Add(medium);
+
+            small.Content = "Small";
+            small.Name = "small";
+            small.FontWeight = FontWeights.Bold;
+            small.HorizontalAlignment = HorizontalAlignment.Left;
+            small.VerticalAlignment = VerticalAlignment.Top;
+            small.Margin = new Thickness(10, 80, 0, 0);
+            small.Click += new RoutedEventHandler(radioBtnClick);
+            small.IsChecked = true;
+            MyGrid.Children.Add(small);
 
             btnSave.Content = "Save";
             btnSave.Name = "btnSave";
             btnSave.HorizontalAlignment = HorizontalAlignment.Left;
             btnSave.VerticalAlignment = VerticalAlignment.Top;
-            btnSave.Width = 80;
+            btnSave.Width = 100;
             btnSave.Height = 50;
-            btnSave.Margin = new Thickness(220, 40, 0, 0);
+            btnSave.Foreground = new SolidColorBrush(Colors.White);
+            btnSave.Background = new SolidColorBrush(Colors.DarkGray);
+            btnSave.FontWeight = FontWeights.Bold;
+            btnSave.FontSize = 14;
+            btnSave.Margin = new Thickness(460, 40, 0, 0);
             btnSave.Click += new RoutedEventHandler(btnClick);
             MyGrid.Children.Add(btnSave);
 
@@ -119,9 +180,13 @@ namespace PaintApp
             btnLoad.Name = "btnLoad";
             btnLoad.HorizontalAlignment = HorizontalAlignment.Left;
             btnLoad.VerticalAlignment = VerticalAlignment.Top;
-            btnLoad.Width = 80;
+            btnLoad.Width = 100;
             btnLoad.Height = 50;
-            btnLoad.Margin = new Thickness(290, 40, 0, 0);
+            btnLoad.Foreground = new SolidColorBrush(Colors.White);
+            btnLoad.Background = new SolidColorBrush(Colors.DarkGray);
+            btnLoad.FontWeight = FontWeights.Bold;
+            btnLoad.FontSize = 14;
+            btnLoad.Margin = new Thickness(570, 40, 0, 0);
             btnLoad.Click += new RoutedEventHandler(btnClick);
             MyGrid.Children.Add(btnLoad);
         }
@@ -142,6 +207,12 @@ namespace PaintApp
                     {
                         MyCanvas.EditingMode = InkCanvasEditingMode.EraseByPoint;
                         MyCanvas.Cursor = System.Windows.Input.Cursors.Cross;
+                    }
+                    break;
+
+                case "clearAll":
+                    {
+                        this.MyCanvas.Strokes.Clear();
                     }
                     break;
 
@@ -187,6 +258,34 @@ namespace PaintApp
                         MyCanvas.Strokes = myStrk;
                         fs.Close();
 
+                    }
+                    break;
+            }
+        }
+
+        public void radioBtnClick(object sender, RoutedEventArgs e)
+        {
+            RadioButton btn = (RadioButton)sender;
+            switch (btn.Name)
+            {
+                case "big":
+                    {
+                        MyCanvas.DefaultDrawingAttributes.Width = 50;
+                        MyCanvas.DefaultDrawingAttributes.Height = 50;
+                    }
+                    break;
+
+                case "medium":
+                    {
+                        MyCanvas.DefaultDrawingAttributes.Width = 25;
+                        MyCanvas.DefaultDrawingAttributes.Height = 25;
+                    }
+                    break;
+
+                case "small":
+                    {
+                        MyCanvas.DefaultDrawingAttributes.Width = 10;
+                        MyCanvas.DefaultDrawingAttributes.Height = 10;
                     }
                     break;
             }
